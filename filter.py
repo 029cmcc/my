@@ -1,56 +1,70 @@
 import json
 import urllib.request
-import os
 
 
-CONFIG = "config.json"
+CONFIG_FILE = "config.json"
 
 
 def load_config():
 
-    with open(CONFIG, "r", encoding="utf-8") as f:
+    with open(
+        CONFIG_FILE,
+        "r",
+        encoding="utf-8"
+    ) as f:
         return json.load(f)
 
 
 
-def get_source(url):
+def get_json(url):
 
-    print("获取源接口:")
+    print("正在获取源接口...")
+
+    headers = {
+        "User-Agent":
+        "Mozilla/5.0"
+    }
 
     req = urllib.request.Request(
         url,
-        headers={
-            "User-Agent":
-            "Mozilla/5.0"
-        }
+        headers=headers
     )
 
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(
+        req,
+        timeout=30
+    ) as response:
 
-        data = r.read()
+        data = response.read()
 
-    return json.loads(data.decode("utf-8"))
-
-
-
-def filter_sites(data, cfg):
-
-    sites = data.get("sites", [])
-
-    keep = []
-
-    rename = cfg["rename"]
-
-    order = cfg["order"]
+    return json.loads(
+        data.decode("utf-8")
+    )
 
 
-    # 按key保留
+
+def filter_sites(data, config):
+
+    sites = data.get(
+        "sites",
+        []
+    )
+
+    rename = config["rename"]
+
+    order = config["order"]
+
 
     site_map = {}
 
+
+    # 白名单过滤
+
     for site in sites:
 
-        key = site.get("key")
+        key = site.get(
+            "key"
+        )
 
         if key in rename:
 
@@ -60,26 +74,31 @@ def filter_sites(data, cfg):
 
 
 
-    # 按排序输出
+    new_sites = []
+
+
+    # 按指定顺序输出
 
     for key in order:
 
         if key in site_map:
 
-            keep.append(site_map[key])
+            new_sites.append(
+                site_map[key]
+            )
 
 
-    data["sites"] = keep
+    data["sites"] = new_sites
 
 
     return data
 
 
 
-def save_json(data, path):
+def save_json(data, filename):
 
     with open(
-        path,
+        filename,
         "w",
         encoding="utf-8"
     ) as f:
@@ -95,34 +114,40 @@ def save_json(data, path):
 
 def main():
 
-    cfg = load_config()
+    config = load_config()
 
 
-    source = cfg["source"]
+    source = config["source"]
 
-    output = cfg["output"]
+    output = config["output"]
 
 
-    data = get_source(source)
+    data = get_json(
+        source
+    )
 
 
     if "sites" not in data:
 
         raise Exception(
-            "接口没有sites字段"
+            "错误：接口不存在 sites"
         )
 
 
-    old = len(data["sites"])
+    old_count = len(
+        data["sites"]
+    )
 
 
     data = filter_sites(
         data,
-        cfg
+        config
     )
 
 
-    new = len(data["sites"])
+    new_count = len(
+        data["sites"]
+    )
 
 
     save_json(
@@ -132,7 +157,15 @@ def main():
 
 
     print(
-        f"完成: {old} -> {new}"
+        "过滤完成"
+    )
+
+    print(
+        f"原站点: {old_count}"
+    )
+
+    print(
+        f"保留站点: {new_count}"
     )
 
 
