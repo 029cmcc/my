@@ -1,28 +1,85 @@
 import json
 import urllib.request
+import os
 
 
-CONFIG_FILE = "config.json"
-OUTPUT_FILE = "fish.json"
+CONFIG = "config.json"
 
 
+def load_config():
 
-def load_json(file):
-
-    with open(
-        file,
-        "r",
-        encoding="utf-8"
-    ) as f:
-
+    with open(CONFIG, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 
-def save_json(file,data):
+def get_source(url):
+
+    print("获取源接口:")
+
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent":
+            "Mozilla/5.0"
+        }
+    )
+
+    with urllib.request.urlopen(req, timeout=30) as r:
+
+        data = r.read()
+
+    return json.loads(data.decode("utf-8"))
+
+
+
+def filter_sites(data, cfg):
+
+    sites = data.get("sites", [])
+
+    keep = []
+
+    rename = cfg["rename"]
+
+    order = cfg["order"]
+
+
+    # 按key保留
+
+    site_map = {}
+
+    for site in sites:
+
+        key = site.get("key")
+
+        if key in rename:
+
+            site["name"] = rename[key]
+
+            site_map[key] = site
+
+
+
+    # 按排序输出
+
+    for key in order:
+
+        if key in site_map:
+
+            keep.append(site_map[key])
+
+
+    data["sites"] = keep
+
+
+    return data
+
+
+
+def save_json(data, path):
 
     with open(
-        file,
+        path,
         "w",
         encoding="utf-8"
     ) as f:
@@ -36,230 +93,47 @@ def save_json(file,data):
 
 
 
-def download(url):
-
-    print("================")
-    print("下载接口:")
-    print(url)
-
-
-    req = urllib.request.Request(
-
-        url,
-
-        headers={
-            "User-Agent":
-            "Mozilla/5.0"
-        }
-
-    )
-
-
-    with urllib.request.urlopen(
-        req,
-        timeout=30
-    ) as r:
-
-
-        return json.loads(
-            r.read()
-            .decode("utf-8")
-        )
-
-
-
-
 def main():
 
-
-    cfg = load_json(
-        CONFIG_FILE
-    )
+    cfg = load_config()
 
 
-    data = download(
-        cfg["source"]
-    )
+    source = cfg["source"]
+
+    output = cfg["output"]
+
+
+    data = get_source(source)
 
 
     if "sites" not in data:
 
         raise Exception(
-            "接口异常，没有sites字段"
+            "接口没有sites字段"
         )
 
 
-    sites = data["sites"]
+    old = len(data["sites"])
 
 
-    print(
-        "原始站点:",
-        len(sites)
+    data = filter_sites(
+        data,
+        cfg
     )
 
 
-    keep_keys = cfg["keep_keys"]
-
-
-    result = []
-
-
-
-    for site in sites:
-
-
-        key = site.get(
-            "key",
-            ""
-        )
-
-
-        name = site.get(
-            "name",
-            ""
-        )
-
-
-        text = key + name
-
-
-
-        # ========
-        # 优先保留
-        # ========
-
-        if key in keep_keys:
-
-            result.append(site)
-
-            continue
-
-
-
-        # ========
-        # 删除关键词
-        # ========
-
-
-        remove = False
-
-
-        for word in cfg["remove_keywords"]:
-
-
-            if word in text:
-
-                remove = True
-
-                break
-
-
-
-        if remove:
-
-            continue
-
-
-
-    # ==========
-    # 改名
-    # ==========
-
-
-    rename = cfg["rename"]
-
-
-    for site in result:
-
-
-        key = site.get(
-            "key"
-        )
-
-
-        if key in rename:
-
-
-            site["name"] = rename[key]
-
-
-
-
-    # ==========
-    # 排序
-    # ==========
-
-
-    order = cfg["order"]
-
-
-    new_sites = []
-
-
-
-    for key in order:
-
-
-        for site in result:
-
-
-            if site.get("key") == key:
-
-                new_sites.append(site)
-
-                break
-
-
-
-    data["sites"] = new_sites
-
-
-
-    print("================")
-
-    print(
-        "过滤后站点:",
-        len(new_sites)
-    )
-
-    print("================")
-
-
-
-    for s in new_sites:
-
-
-        print(
-
-            s.get("key"),
-
-            "|",
-
-            s.get("name")
-
-        )
-
-
-
-    print("================")
-
+    new = len(data["sites"])
 
 
     save_json(
-
-        OUTPUT_FILE,
-
-        data
-
+        data,
+        output
     )
-
 
 
     print(
-        "生成完成:",
-        OUTPUT_FILE
+        f"完成: {old} -> {new}"
     )
-
 
 
 
