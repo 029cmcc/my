@@ -139,6 +139,25 @@
       }
     },
     {
+      "key": "Yidong4K",
+      "name": "✧移动┆4K✧",
+      "type": 3,
+      "api": "csp_Yidong4K",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "changeable": 1
+    },
+    {
+      "key": "WoNiu",
+      "name": "✧蜗牛┆4K✧",
+      "type": 3,
+      "api": "csp_WoNiu",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": "https://max.moyu666666.top/woniu_invite.php"
+    },
+    {
       "key": "Fishshayang",
       "name": "✧傻样┆4K✧",
       "type": 3,
