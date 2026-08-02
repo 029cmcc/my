@@ -190,8 +190,49 @@
       }
     },
     {
+      "key": "PanWebShare123",
+      "name": "✧123┆4K✧",
+      "type": 3,
+      "api": "csp_PanWebShare123",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "style": {
+        "type": "list",
+        "ratio": 1.433
+      },
+      "ext": {
+        "site": [
+          "https://123panfx.com",
+          "https://pan1.me"
+        ],
+        "cookie": ""
+      }
+    },
+    {
+      "key": "PanWebShareGuangYa",
+      "name": "✧光鸭┆4K✧",
+      "type": 3,
+      "api": "csp_PanWebShareGuangYa",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "style": {
+        "type": "list",
+        "ratio": 1.433
+      },
+      "ext": {
+        "site": [
+          "https://www.guangya.net"
+        ],
+        "cookie": ""
+      }
+    },
+    {
       "key": "Rebo",
-      "name": "✧热播┆APP✧",
+      "name": "✧热播┆影视✧",
       "type": 3,
       "api": "csp_AppRJ",
       "searchable": 1,
