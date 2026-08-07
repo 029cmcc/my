@@ -12,7 +12,7 @@
     },
     {
       "key": "Wogg",
-      "name": "✧玩偶┆4K盘✧",
+      "name": "✧玩偶┆盘✧",
       "type": 3,
       "api": "csp_Wogg",
       "searchable": 1,
@@ -31,7 +31,7 @@
     },
     {
       "key": "FishMuou",
-      "name": "✧木偶┆4K盘✧",
+      "name": "✧木偶┆盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -46,7 +46,7 @@
     },
     {
       "key": "FishZhizhen",
-      "name": "✧至臻┆4K盘✧",
+      "name": "✧至臻┆盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -63,7 +63,7 @@
     },
     {
       "key": "FishDuoduo",
-      "name": "✧多多┆4K✧盘",
+      "name": "✧多多┆盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -77,7 +77,7 @@
     },
     {
       "key": "FishErxiao",
-      "name": "✧二小┆4K盘✧",
+      "name": "✧二小┆盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -93,7 +93,7 @@
     },
     {
       "key": "FishLabi",
-      "name": "✧蜡笔┆4K盘✧",
+      "name": "✧蜡笔┆盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -111,7 +111,7 @@
     },
     {
       "key": "FishHuban",
-      "name": "✧虎斑┆4K盘✧",
+      "name": "✧虎斑┆盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -124,7 +124,7 @@
     },
     {
       "key": "Yidong4K",
-      "name": "✧移动┆4K盘✧",
+      "name": "✧移动┆盘✧",
       "type": 3,
       "api": "csp_Yidong4K",
       "searchable": 1,
@@ -134,7 +134,7 @@
     },
     {
       "key": "Fishshayang",
-      "name": "✧傻样┆4K盘✧",
+      "name": "✧傻样┆盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
