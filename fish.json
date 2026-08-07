@@ -5,6 +5,22 @@
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
   "sites": [
     {
+      "key": "Douban",
+      "name": "✧片单┆精选✧",
+      "type": 3,
+      "api": "csp_PianDan",
+      "searchable": 1,
+      "indexs": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "home": {
+          "douban": "https://6800.kstore.vip/douban.json",
+          "tmdb": "https://6800.kstore.vip/tmdb.json"
+        }
+      }
+    },
+    {
       "key": "FishConfig",
       "name": "✧设置┆中心✧",
       "type": 3,
@@ -12,7 +28,7 @@
     },
     {
       "key": "Wogg",
-      "name": "✧玩偶┆盘✧",
+      "name": "✧玩偶┆网盘✧",
       "type": 3,
       "api": "csp_Wogg",
       "searchable": 1,
@@ -31,7 +47,7 @@
     },
     {
       "key": "FishMuou",
-      "name": "✧木偶┆盘✧",
+      "name": "✧木偶┆网盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -46,7 +62,7 @@
     },
     {
       "key": "FishZhizhen",
-      "name": "✧至臻┆盘✧",
+      "name": "✧至臻┆网盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -63,7 +79,7 @@
     },
     {
       "key": "FishDuoduo",
-      "name": "✧多多┆盘✧",
+      "name": "✧多多┆网盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -77,7 +93,7 @@
     },
     {
       "key": "FishErxiao",
-      "name": "✧二小┆盘✧",
+      "name": "✧二小┆网盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -93,7 +109,7 @@
     },
     {
       "key": "FishLabi",
-      "name": "✧蜡笔┆盘✧",
+      "name": "✧蜡笔┆网盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -111,7 +127,7 @@
     },
     {
       "key": "FishHuban",
-      "name": "✧虎斑┆盘✧",
+      "name": "✧虎斑┆网盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
@@ -124,7 +140,7 @@
     },
     {
       "key": "Yidong4K",
-      "name": "✧移动┆盘✧",
+      "name": "✧移动┆网盘✧",
       "type": 3,
       "api": "csp_Yidong4K",
       "searchable": 1,
@@ -134,7 +150,7 @@
     },
     {
       "key": "Fishshayang",
-      "name": "✧傻样┆盘✧",
+      "name": "✧傻样┆网盘✧",
       "type": 3,
       "api": "csp_FishCloud",
       "searchable": 1,
