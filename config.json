@@ -2,18 +2,19 @@
   "source": "https://6800.kstore.vip/fish.json",
   "output": "fish.json",
   "rename": {
+    "Douban": "✧片单┆精选✧",
     "FishConfig": "✧设置┆中心✧",
-    
-    "Wogg": "✧玩偶┆盘✧",
-    "FishMuou": "✧木偶┆盘✧",
-    "FishZhizhen": "✧至臻┆盘✧",
-    "FishDuoduo": "✧多多┆盘✧",
-    "FishErxiao": "✧二小┆盘✧",
-    "FishLabi": "✧蜡笔┆盘✧",
-    "FishHuban": "✧虎斑┆盘✧",
-    "Yidong4K": "✧移动┆盘✧",
-    "Fishshayang": "✧傻样┆盘✧",
-    
+
+    "Wogg": "✧玩偶┆网盘✧",
+    "FishMuou": "✧木偶┆网盘✧",
+    "FishZhizhen": "✧至臻┆网盘✧",
+    "FishDuoduo": "✧多多┆网盘✧",
+    "FishErxiao": "✧二小┆网盘✧",
+    "FishLabi": "✧蜡笔┆网盘✧",
+    "FishHuban": "✧虎斑┆网盘✧",
+    "Yidong4K": "✧移动┆网盘✧",
+    "Fishshayang": "✧傻样┆网盘✧",
+
     "PianKu8": "✧片库┆4K✧",
     "BuBu": "✧布布┆4K✧",
     "YunDuo": "✧云朵┆4K✧",
@@ -21,7 +22,7 @@
     "枫眠": "✧枫眠┆4K✧",
     "长泽": "✧长泽┆4K✧",
     "清沅": "✧清沅┆4K✧",
-    
+
     "Rebo": "✧热播┆影视✧",
     "Guazi": "✧瓜子┆影视✧",
     "Duboku": "✧独播┆影视✧",
@@ -31,23 +32,24 @@
     "SaoHuo": "✧骚火┆影视✧",
     "fishhxq": "✧韩圈┆影视✧",
     "Kan360": "✧三六┆影视✧",
-    
+
     "HonHon": "✧红红┆短剧✧",
-    
+
     "XingHui": "✧星绘┆动漫✧",
     "双星": "✧双星┆动漫✧",
     "XgAnime": "✧西瓜┆动漫✧",
     "Manbo": "✧曼波┆动漫✧",
     "Gugu": "✧咕咕┆动漫✧",
-    
+
     "Buguyy": "✧布谷┆音乐✧",
     "ChuXin": "✧初心┆音乐✧",
     "aiting": "✧爱听┆音乐✧",
     "Music24bit": "✧无损┆音乐✧"
   },
   "order": [
+    "Douban",
     "FishConfig",
-    
+
     "Wogg",
     "FishMuou",
     "FishZhizhen",
@@ -57,7 +59,7 @@
     "FishHuban",
     "Yidong4K",
     "Fishshayang",
-    
+
     "PianKu8",
     "BuBu",
     "YunDuo",
@@ -65,7 +67,7 @@
     "枫眠",
     "长泽",
     "清沅",
-    
+
     "Rebo",
     "Guazi",
     "Duboku",
@@ -75,15 +77,15 @@
     "SaoHuo",
     "fishhxq",
     "Kan360",
-    
+
     "HonHon",
-    
+
     "XingHui",
     "双星",
     "XgAnime",
     "Manbo",
     "Gugu",
-    
+
     "Buguyy",
     "ChuXin",
     "aiting",
