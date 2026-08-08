@@ -1,104 +1,48 @@
 import json
 import urllib.request
+import os
+from datetime import datetime, timezone, timedelta
 
+
+# ==========================
+# 原作者源接口（固定）
+# ==========================
+
+SOURCE = "https://6800.kstore.vip/fish.json"
+
+
+# 文件
 
 CONFIG_FILE = "config.json"
 
+OUTPUT_FILE = "fish.json"
 
-def load_config():
+
+
+# ==========================
+# 读取 JSON
+# ==========================
+
+def load_json(file):
 
     with open(
-        CONFIG_FILE,
+        file,
         "r",
         encoding="utf-8"
     ) as f:
+
         return json.load(f)
 
 
 
-def get_json(url):
+# ==========================
+# 保存 JSON
+# ==========================
 
-    print("正在获取源接口...")
-
-    headers = {
-        "User-Agent":
-        "Mozilla/5.0"
-    }
-
-    req = urllib.request.Request(
-        url,
-        headers=headers
-    )
-
-    with urllib.request.urlopen(
-        req,
-        timeout=30
-    ) as response:
-
-        data = response.read()
-
-    return json.loads(
-        data.decode("utf-8")
-    )
-
-
-
-def filter_sites(data, config):
-
-    sites = data.get(
-        "sites",
-        []
-    )
-
-    rename = config["rename"]
-
-    order = config["order"]
-
-
-    site_map = {}
-
-
-    # 白名单过滤
-
-    for site in sites:
-
-        key = site.get(
-            "key"
-        )
-
-        if key in rename:
-
-            site["name"] = rename[key]
-
-            site_map[key] = site
-
-
-
-    new_sites = []
-
-
-    # 按指定顺序输出
-
-    for key in order:
-
-        if key in site_map:
-
-            new_sites.append(
-                site_map[key]
-            )
-
-
-    data["sites"] = new_sites
-
-
-    return data
-
-
-
-def save_json(data, filename):
+def save_json(file, data):
 
     with open(
-        filename,
+        file,
         "w",
         encoding="utf-8"
     ) as f:
@@ -112,61 +56,342 @@ def save_json(data, filename):
 
 
 
-def main():
+# ==========================
+# 获取源接口
+# ==========================
 
-    config = load_config()
+def fetch_source():
+
+    print()
+    print("====================")
+    print("正在获取接口:")
+    print(SOURCE)
+    print("====================")
 
 
-    source = config["source"]
+    req = urllib.request.Request(
 
-    output = config["output"]
+        SOURCE,
 
+        headers={
+            "User-Agent":
+            "Mozilla/5.0"
+        }
 
-    data = get_json(
-        source
     )
 
 
-    if "sites" not in data:
+    try:
+
+        with urllib.request.urlopen(
+
+            req,
+
+            timeout=30
+
+        ) as response:
+
+
+            text = response.read().decode(
+
+                "utf-8-sig"
+
+            )
+
+
+            return json.loads(text)
+
+
+
+    except Exception as e:
 
         raise Exception(
-            "错误：接口不存在 sites"
+
+            f"接口获取失败: {e}"
+
         )
 
 
-    old_count = len(
-        data["sites"]
+
+# ==========================
+# 主程序
+# ==========================
+
+def main():
+
+    start_time = datetime.now()
+
+
+
+    if not os.path.exists(CONFIG_FILE):
+
+        raise Exception(
+
+            "找不到 config.json"
+
+        )
+
+
+
+    cfg = load_json(CONFIG_FILE)
+
+
+
+    data = fetch_source()
+
+
+
+    source_sites = data.get(
+
+        "sites",
+
+        []
+
     )
 
 
-    data = filter_sites(
-        data,
-        config
+
+    if not source_sites:
+
+        raise Exception(
+
+            "源接口没有 sites 数据"
+
+        )
+
+
+
+    # 兼容 my 原配置
+
+    order = cfg.get(
+
+        "sites_order",
+
+        cfg.get("order", [])
+
     )
 
 
-    new_count = len(
-        data["sites"]
+
+    rename = cfg.get(
+
+        "rename",
+
+        {}
+
     )
+
+
+
+    site_map = {}
+
+
+
+    print()
+
+    print("====================")
+
+    print("开始过滤站点...")
+
+    print("====================")
+
+
+
+    for site in source_sites:
+
+
+        key = site.get(
+
+            "key"
+
+        )
+
+
+        if not key:
+
+            continue
+
+
+
+        if key not in order:
+
+            continue
+
+
+
+        if key in site_map:
+
+            print(
+
+                "发现重复 key:",
+
+                key
+
+            )
+
+
+
+        new_site = site.copy()
+
+
+
+        if key in rename:
+
+            new_site["name"] = rename[key]
+
+
+
+        site_map[key] = new_site
+
+
+
+
+    sites = []
+
+    missing = []
+
+
+
+    for key in order:
+
+
+        if key in site_map:
+
+            sites.append(
+
+                site_map[key]
+
+            )
+
+        else:
+
+            missing.append(key)
+
+
+
+    if missing:
+
+        print()
+
+        print("====================")
+
+        print("以下站点未找到:")
+
+        for m in missing:
+
+            print("-", m)
+
+        print("====================")
+
+
+
+    if len(sites) == 0:
+
+        raise Exception(
+
+            "没有匹配到任何站点，请检查 config.json"
+
+        )
+
+
+
+    result = data.copy()
+
+    result["sites"] = sites
+
 
 
     save_json(
-        data,
-        output
+
+        OUTPUT_FILE,
+
+        result
+
     )
 
+
+
+    end_time = datetime.now(
+
+        timezone(
+
+            timedelta(hours=8)
+
+        )
+
+    )
+
+
+
+    print()
+
+    print("====================")
+
+    print("生成完成")
 
     print(
-        "过滤完成"
+
+        "站点数量:",
+
+        len(sites)
+
     )
 
     print(
-        f"原站点: {old_count}"
+
+        "耗时:",
+
+        str(datetime.now() - start_time)
+
     )
 
     print(
-        f"保留站点: {new_count}"
+
+        "时间:",
+
+        end_time.strftime(
+
+            "%Y-%m-%d %H:%M:%S"
+
+        )
+
     )
+
+    print("====================")
+
+
+
+    for i, s in enumerate(
+
+        sites,
+
+        1
+
+    ):
+
+        print(
+
+            f"{i:02d}. "
+
+            f"{s.get('name','')}"
+
+            f" [{s.get('key','')}]"
+
+        )
+
+
+
+    print("====================")
+
+    print(
+
+        "输出文件:",
+
+        OUTPUT_FILE
+
+    )
+
+    print("====================")
 
 
 
