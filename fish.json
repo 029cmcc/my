@@ -27,6 +27,13 @@
       "api": "csp_FishConfig"
     },
     {
+      "key": "ALLLive",
+      "name": "✧星河┆共影✧",
+      "type": 3,
+      "api": "csp_ALLLive",
+      "searchable": 1
+    },
+    {
       "key": "Wogg",
       "name": "✧玩偶┆网盘✧",
       "type": 3,
@@ -232,6 +239,17 @@
       "type": 3,
       "api": "csp_Guazi",
       "searchable": 1
+    },
+    {
+      "key": "DJHub",
+      "name": "✧短剧┆聚合✧",
+      "type": 3,
+      "api": "csp_DJHub",
+      "searchable": 1,
+      "quickSearch": 1,
+      "genre": "shortdrama",
+      "filterable": 1,
+      "changeable": 1
     },
     {
       "key": "HonHon",
