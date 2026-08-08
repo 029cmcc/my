@@ -267,17 +267,6 @@
       }
     },
     {
-      "key": "XingHui",
-      "name": "✧星绘┆动漫✧",
-      "type": 3,
-      "api": "csp_XingHui",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 1,
-      "ext": "https://max.moyu666666.top/xinghui.php"
-    },
-    {
       "key": "双星",
       "name": "✧双星┆动漫✧",
       "type": 3,
