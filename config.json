@@ -4,6 +4,7 @@
   "rename": {
     "Douban": "✧片单┆精选✧",
     "FishConfig": "✧设置┆中心✧",
+     "ALLLive": "✧星河┆共影✧",
 
     "Wogg": "✧玩偶┆网盘✧",
     "FishMuou": "✧木偶┆网盘✧",
@@ -25,6 +26,7 @@
     "Rebo": "✧热播┆影视✧",
     "Guazi": "✧瓜子┆影视✧",
 
+    "DJHub": "✧短剧┆聚合✧",
     "HonHon": "✧红红┆短剧✧",
 
     "XingHui": "✧星绘┆动漫✧",
@@ -41,6 +43,7 @@
   "order": [
     "Douban",
     "FishConfig",
+    "ALLLive",
 
     "Wogg",
     "FishMuou",
@@ -62,6 +65,7 @@
     "Rebo",
     "Guazi",
 
+    "DJHub",
     "HonHon",
 
     "XingHui",
