@@ -1,5 +1,5 @@
 {
-  "spider": "https://tc-new.z.wiki/autoupload/k2fxc/20260802/826v/fish08022249.jar;md5;9ada45a2b9f084e9100aa07e8fa74fe5",
+  "spider": "https://tc-new.z.wiki/autoupload/k2fxc/20260811/aM7B/fish08110802.jar;md5;6b62eb05659a72767c799cb0aeda3b94",
   "logo": "https://modelscope-resouces.oss-cn-zhangjiakou.aliyuncs.com/avatar%2Ff5309172-1af6-4c4f-a1c5-a4773a1cc718.gif",
   "wallpaper": "http://127.0.0.1:9978/proxy?do=wallpaper",
   "danmaku": "http://127.0.0.1:5266/danmu/webhtv?name={name}&episode={episode}",
@@ -177,24 +177,6 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": "http://qkys.qukanwh.com"
-    },
-    {
-      "key": "BuBu",
-      "name": "✧布布┆4K✧",
-      "type": 3,
-      "api": "csp_BuBu",
-      "searchable": 1,
-      "changeable": 1,
-      "filterable": 1
-    },
-    {
-      "key": "YunDuo",
-      "name": "✧云朵┆4K✧",
-      "type": 3,
-      "api": "csp_YunDuo",
-      "searchable": 1,
-      "changeable": 1,
-      "filterable": 1
     },
     {
       "key": "huaisang",
